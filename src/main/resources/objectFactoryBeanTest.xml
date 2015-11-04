@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+       <bean id="serviceRequestFactory" class="org.springframework.beans.factory.config.ObjectFactoryCreatingFactoryBean">
+              <property name="targetBeanName" value="serviceRequest" />
+       </bean>
+
+       <bean id="serviceRequest" class="com.example.ServiceRequest" scope="prototype"/>
+
+       <bean class="com.example.service.ServiceRequestService" id="serviceRequestService" >
+              <property name="testService" ref="testService" />
+              <property name="serviceRequestObjectFactory" ref="serviceRequestFactory"/>
+       </bean>
+
+       <bean id="testService" class="com.example.test.TestService"/>
+
+
+</beans>
